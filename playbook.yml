@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  roles:
+  - common
+  - base
+  - users
+  - docker
+  - docker-compose
+  - workshop-user
+  - jupyter

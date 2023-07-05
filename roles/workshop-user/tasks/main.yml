@@ -1,0 +1,34 @@
+---
+- name: Create user
+  user:
+    name: "{{ workshop_usr }}"
+    password: "{{ system_pass | password_hash('sha512') }}"
+    shell: /bin/bash
+    createhome: yes
+
+- name: Ensure homes are secure by default
+  file:
+    path: "/home/{{ workshop_usr }}"
+    mode: "u=rwx,g=,o="
+
+# Add user to sudo
+- name: Add sudoers users to wheel group
+  user:
+    name: "{{ workshop_usr }}"
+    groups: wheel
+    append: yes
+
+# Add to dockers group
+- name: Add user to 'docker'' group
+  user:
+    name: "{{ workshop_usr }}"
+    groups: docker
+    append: yes
+
+- name: Update SSH server configuration
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication.*'
+    line: 'PasswordAuthentication yes'
+    state: present
+  notify: Restart SSH Service

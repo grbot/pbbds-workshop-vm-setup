@@ -1,0 +1,14 @@
+all:
+  children:
+    server:
+      hosts:
+            154.114.10.170
+  vars:
+    ansible_ssh_private_key_file: ~/.ssh/id_ed25519
+    ansible_user: ubuntu
+    ansible_ssh_extra_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o AddKeysToAgent=no -o IdentitiesOnly=yes -v
+    workshop_usr: john
+    system_pass: keiC5ahYsd
+    jupyter_pass: KIw3chee7
+    jupyter_port: 8080
+    local_ip: 192.168.101.190
