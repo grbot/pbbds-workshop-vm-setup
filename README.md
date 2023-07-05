@@ -55,7 +55,7 @@ name            = "${var.server_name}-${count.index + 1}"
 ```
 Thirty servers would be created each named e.g. `server-1`, `server-2` ... `server-30`
 
-Now lets get the server up.
+Lets get the servers up.
 ```
 terraform apply
 ```
@@ -66,10 +66,12 @@ Check Ansible version
 ```
 ansible --version
 ansible 2.10.8
+```
 
 Now create a file to drive the Ansible installation
 
 First set OpenStack variables to be used in OpenStack CLI
+
 ```
 export OS_USERNAME=username
 export OS_PASSWORD=password
