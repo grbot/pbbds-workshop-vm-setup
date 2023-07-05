@@ -2,12 +2,11 @@
 
 Get repos
 ```
-git https://github.com/grbot/ilifu-launch-vm.git ilifu-launch-vm-elwazi-workshop
+git https://github.com/grbot/elwazi-workshop-vm-setup.git elwazi-workshop-vm-setup
 ```
-Change to `ilifu-launch-vm-elwazi-workshop` directory
+Change to `elwazi-workshop-vm-setup` directory
 ```
-cd ilifu-launch-vm-elwazi-workshop`
-git checkout elwazi-workshop
+cd elwazi-workshop-vm-setupp`
 ```
 Check Terraform version
 ```
@@ -51,7 +50,7 @@ Regarding naming
 If
 ```
 count = 30
-name            = "${var.server_name}-${count.index + 1}"
+name = "${var.server_name}-${count.index + 1}"
 ```
 Thirty servers would be created each named e.g. `server-1`, `server-2` ... `server-30`
 
