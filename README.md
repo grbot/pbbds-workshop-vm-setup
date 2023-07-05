@@ -2,11 +2,11 @@
 
 Get repos
 ```
-git https://github.com/grbot/elwazi-workshop-vm-setup.git elwazi-workshop-vm-setup
+git https://github.com/grbot/elwazi-workshop-vm-setup.git
 ```
 Change to `elwazi-workshop-vm-setup` directory
 ```
-cd elwazi-workshop-vm-setupp`
+cd elwazi-workshop-vm-setup
 ```
 Check Terraform version
 ```
