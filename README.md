@@ -2,16 +2,16 @@
 
 Get repos
 ```
-git https://github.com/grbot/elwazi-workshop-vm-setup.git
+git https://github.com/grbot/pbbds-workshop-vm-setup.git
 ```
-Change to `elwazi-workshop-vm-setup` directory
+Change to `pbbds-workshop-vm-setup` directory
 ```
-cd elwazi-workshop-vm-setup
+cd pbbds-workshop-vm-setup
 ```
 Check Terraform version
 ```
 terraform -version
-Terraform v1.3.2
+Terraform v1.3.27
 ```
 Clean up space if previous installation exists here
 ```
@@ -49,10 +49,10 @@ Regarding naming
 
 If
 ```
-count = 30
+count = 25
 name = "${var.server_name}-${count.index + 1}"
 ```
-Thirty servers would be created each named e.g. `server-1`, `server-2` ... `server-30`
+Thirty servers would be created each named e.g. `server-1`, `server-2` ... `server-25`
 
 Lets get the servers up.
 ```
@@ -83,10 +83,10 @@ export OS_AUTH_URL=auth_url
 
 Then create file
 ```
-for i in $(seq 1 30); do echo "user"$i;done > prep/users
-for i in $(seq 1 30); do p1=`pwgen -1`; p2=`pwgen -1`; echo -e $p1"\t"$p2;done > prep/passwords
-for i in $(seq 1 30); do echo "elwazi-workshop-"$i;done > prep/servers
-paste <(openstack server list --name elwazi-workshop -f json | jq '.[].Name' | sed 's/"//g') <(openstack server list --name elwazi-workshop -f json | jq '.[].Networks."cbio-net"[0]' | sed 's/"//g') <(openstack server list --name elwazi-workshop -f json | jq '.[].Networks."cbio-net"[1]' | sed 's/"//g') | sort -V -k 1 | grep -w -f prep/servers > prep/ips
+for i in $(seq 1 25); do echo "user"$i;done > prep/users
+for i in $(seq 1 25); do p1=`pwgen -1`; p2=`pwgen -1`; echo -e $p1"\t"$p2;done > prep/passwords
+for i in $(seq 1 25); do echo "pbbds-workshop-"$i;done > prep/servers
+paste <(openstack server list --name pbbds-workshop -f json | jq '.[].Name' | sed 's/"//g') <(openstack server list --name pbbds-workshop -f json | jq '.[].Networks."cbio-net"[0]' | sed 's/"//g') <(openstack server list --name pbbds-workshop -f json | jq '.[].Networks."cbio-net"[1]' | sed 's/"//g') | sort -V -k 1 | grep -w -f prep/servers > prep/ips
 paste prep/users prep/ips prep/passwords > prep/all
 ```
 
@@ -98,5 +98,5 @@ rm -rf all-plays/
 Now need to loop through above all for setting up machines
 
 ```
-for i in $(seq 1 30); do echo all-plays/elwazi-workshop-$i; done | parallel "cd {}; ansible-playbook -i inventory.yaml playbook.yml > log.txt 2>&1"
+for i in $(seq 1 25); do echo all-plays/pbbds-workshop-$i; done | parallel "cd {}; ansible-playbook -i inventory.yaml playbook.yml > log.txt 2>&1"
 ```

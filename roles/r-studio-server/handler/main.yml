@@ -1,0 +1,6 @@
+---
+# handlers file for roles/base
+  - name: Restart RStudio Server
+    ansible.builtin.service:
+      name: rstudio-server
+      state: restarted

@@ -26,7 +26,7 @@
   - name: Set Jupyter Notebook password
     become: true
     command: >
-      python3 -c "from notebook.auth import passwd; print(passwd('{{ jupyter_pass }}'))"
+      python3 -c "from jupyter_server.auth import passwd; print(passwd('{{ jupyter_pass }}'))"
     register: hashed_password
     become_user: "{{ workshop_usr }}"
 
