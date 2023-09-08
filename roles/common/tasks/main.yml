@@ -19,6 +19,15 @@
       - 'ssl-cert'
       - 'wget'
       - 'sqlite3'
+      - 'libxml2-dev'
+      - 'libcurl4-openssl-dev'
+      - 'libfontconfig1-dev'
+      - 'libharfbuzz-dev'
+      - 'libfribidi-dev' 
+      - 'libfreetype6-dev'
+      - 'libpng-dev'
+      - 'libtiff5-dev'
+      - 'libjpeg-dev'
 
     state: latest
     update_cache: yes
