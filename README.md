@@ -100,3 +100,11 @@ Now need to loop through above all for setting up machines
 ```
 for i in $(seq 1 25); do echo all-plays/pbbds-workshop-$i; done | parallel "cd {}; ansible-playbook -i inventory.yaml playbook.yml > log.txt 2>&1"
 ```
+
+Not sure why but the sshd restart handle does not take affect. This causes users (that requires a password login) to not be able to login. You would be presented with the error e.g. `user1@154.114.10.85: Permission denied (publickey)`
+
+To resolve this a manual restart of the sshd was issued:
+
+```
+while read line; do ip=`echo $line | awk '{print $4}'`; echo $ip;ssh -n $ip sudo systemctl restart sshd; done< prep/all
+```
