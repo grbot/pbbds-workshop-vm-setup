@@ -48,6 +48,7 @@
 
   - name: Start Jupyter Notebook service
     become: true
+    tags: [start_jupyter]
     command: jupyter notebook --port={{ jupyter_port }} --no-browser
     async: 2419200 ## four weeks
     poll: 0
